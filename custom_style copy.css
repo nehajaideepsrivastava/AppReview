@@ -1,0 +1,393 @@
+/* Hide Streamlit header */
+
+    header {visibility: hidden;}
+
+ 
+
+    /* Hide Streamlit footer */
+
+    footer {visibility: hidden;}
+
+ 
+
+    /* Hide Main Menu */
+
+    #MainMenu {visibility: hidden;}
+
+ 
+
+    .stApp {
+
+        background-color: #F5F5F5;
+
+        color: black;
+
+    }
+
+ 
+
+    html, body, [class*="css"] {
+
+        font-family: 'PP Right Grotesk', sans-serif;
+
+    }
+
+   
+
+    /* Headers */
+
+    h1, h2, h3, h4, h5, h6 {
+
+        color: black;
+
+        font-weight: bold;
+
+    }
+
+ 
+
+    /* Buttons */
+
+    div.stButton > button {
+
+        background-color: #ffdd00;
+
+        color: black !important;
+
+        /* border: black; */
+
+        border: 2px solid black !important;
+
+        padding: 0.2em 1em;
+
+        border-radius: 1px;
+
+    }
+
+ 
+
+    /* Sidebar background and text */
+
+    section[data-testid="stSidebar"] {
+
+        background-color: #ffdd00;
+
+    }
+
+ 
+
+    section[data-testid="stSidebar"] * {
+
+        color:  black !important;
+
+    }
+
+ 
+
+    /* Sidebar background and text */
+
+    section[data-testid="stSidebar"] {
+
+        background-color: #ffdd00;
+
+        color: black !important;
+
+        border-right: 1px solid black; /* Vertical separator */
+
+    }    
+
+ 
+
+   
+
+    /* DataFrame styling */
+
+    .stDataFrame {
+
+        background-color: white;
+
+        border: 1px solid black;
+
+        border-radius: 5px;
+
+        padding: 8px;
+
+    }
+
+ 
+
+    .stDataFrame table {
+
+        color: black;
+
+        font-weight: 500;
+
+    }
+
+    div[data-baseweb="input"] input{
+
+    background-color:rgb(255, 255, 255);
+
+    }
+
+ 
+
+    .stDateInput:nth-of-type(1) div[data-baseweb="input"] {
+
+        background-color:rgb(254, 254, 254);  
+
+        border:  2px solid #ffdd00;  
+
+    }
+
+ 
+
+    .stTextInput div[data-baseweb="input"] {
+
+        background-color: rgb(255, 255, 255); ;   /* light blue */
+
+        border: 2px solid #ffdd00;
+
+            }
+
+ 
+
+    .stDataFrame thead {
+
+        background-color: black;
+
+        color: #FFFF00;
+
+    }
+
+ 
+
+    .stVerticalBlock{
+
+      display: block;
+
+    }
+
+ 
+
+    .stWidgetLabel{
+
+    background-color: #ffdd00;
+
+    }
+
+ 
+
+    /* Style for download button */
+
+    .stDownloadButton button {
+
+        /* background-color: #ffdd00;
+
+        color: black;
+
+        border: none;
+
+        padding: 0.5em 1em;
+
+        font-weight: bold;
+
+        border-radius: 5px;
+
+        cursor: pointer; */
+
+        background-color: #ffdd00;
+
+        color: black !important;
+
+        /* border: black; */
+
+        border: 2px solid black !important;
+
+        padding: 0.5em 1em;
+
+        border-radius: 1px;
+
+    }
+
+ 
+
+    .stDownloadButton button:hover {
+
+        /* background-color: #333333; */
+
+        color: #FFFF00;
+
+    }
+
+    .st -dz{
+
+    border: 2px solid "#ffdd00";
+
+ 
+
+    }
+
+ 
+
+    /* Disable hover color change for expanders */
+
+    .streamlit-expanderHeader:hover {
+
+        color: inherit !important;
+
+    }
+
+ 
+
+    /* Optional: Disable hover color change for all markdown text */
+
+    .markdown-text-container:hover {
+
+        color: inherit !important;
+
+    }
+
+ 
+
+    /* Optional: Disable hover effect for all text */
+
+    *:hover {
+
+        color: inherit !important;
+
+    }
+
+        #MainMenu {visibility: hidden;}
+
+        .stDeployButton {display:none;}
+
+        footer {visibility: hidden;}
+
+        #stDecoration {display:none;}
+
+
+
+
+        [data-testid="stVerticalBlock"] {
+
+            display: inline;
+
+            gap: 1rem;
+
+        }
+
+ 
+
+        [data-testid="stSidebarUserContent"] {
+
+            position: relative;
+
+            padding : 2rem;
+
+            gap: 1rem;
+
+        }
+
+ 
+
+       /* Sidebar image tweaks */
+
+.no-fullscreen-sidebar img {
+
+    pointer-events: none;
+
+    user-select: none;
+
+}
+
+ 
+
+[title="View fullscreen"] {
+
+    display: none !important;
+
+}
+
+ 
+
+.no-fullscreen-sidebar {
+
+    text-align: center;
+
+}
+
+ 
+
+.no-fullscreen-sidebar img {
+
+    width: 100%;
+
+    margin-top: 10px;
+
+    margin-bottom: 20px;
+
+}
+
+ 
+
+.custom-header {
+
+    text-align: center;
+
+    padding-top: 25px;
+
+}
+
+ 
+
+.custom-header h1 {
+
+    color: black;
+
+    font-weight: bold;
+
+    font-family: "PP Right Grotesk", sans-serif;
+
+    font-size: 45px;
+
+}
+
+
+
+
+.timed-warning-box {
+
+    margin-top: 5px;
+
+    text-align: center;
+
+    padding: 10px;
+
+    background-color: #f8d7da;
+
+    border: 1px solid #f5c6cb;
+
+    border-radius: 4px;
+
+}
+
+ 
+
+.timed-warning-box strong {
+
+    color: black;
+
+    font-size: 15px;
+
+}
+
+ 
+
+.stDataFrame {
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+}

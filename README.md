@@ -1,2 +1,0 @@
-# AppReview
-AppReview
