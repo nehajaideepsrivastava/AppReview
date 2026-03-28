@@ -130,7 +130,7 @@ def show_topic_modeling(filtered_df):
 
  
 
-        # --- Generate PDF summary --- 
+        # --- Generate PDF summary ---
 
         pdf = FPDF()
 
@@ -224,7 +224,7 @@ with open("country_config.json", "r") as f:
 
     country_map = json.load(f)
 
-from streamlit_option_menu import option_menu   
+from streamlit_option_menu import option_menu  
 
 import streamlit as st
 
@@ -314,10 +314,6 @@ from google_play_scraper import Sort, reviews_all
 
 from app_store_scraper import AppStore
 
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-
 import seaborn as sns
 
 import pycountry
@@ -325,6 +321,8 @@ import pycountry
 from wordcloud import WordCloud, STOPWORDS
 
 from langdetect import detect
+
+import matplotlib.pyplot as plt
 
 from nltk.util import ngrams
 
@@ -338,9 +336,11 @@ from languages import *
 
 warnings.filterwarnings('ignore')
 
-nltk.download('punkt')
-
-nltk.download('words')
+nltk.download('punkt',        quiet=True)
+nltk.download('punkt_tab',    quiet=True)
+nltk.download('words',        quiet=True)
+nltk.download('vader_lexicon', quiet=True)
+nltk.download('stopwords',    quiet=True)
 
 from sklearn.feature_extraction.text import CountVectorizer
 
@@ -378,7 +378,7 @@ st.set_page_config(
 
     page_title="Customer Sentiment Analyzer!!!",
 
-    page_icon="WUNEW.png",  # File must be in the root directory
+    page_icon="Images/WUNEW.png",  # File must be in the root directory
 
     layout="wide"
 
@@ -533,7 +533,7 @@ st.markdown("""
 # Render sidebar image safely: prefer base64 data URI if available, else fall back to file path or placeholder
 try:
     if encoded_image:
-        img_html = f'<img src="data:image/png;base64,{encoded_image}" style="width: 100%;margin-top: 10px;margin-bottom: 20px;"/>'
+        img_html = f'<img src="data:image/png;base64,{encoded_image}" style="width: 100%;margin-top: 0px;margin-bottom: 20px;"/>'
         st.sidebar.markdown(f"""
             <style>
                 .no-fullscreen-sidebar img {{ pointer-events: none; user-select: none; }}
@@ -563,6 +563,15 @@ except Exception:
 st.markdown("""
 
 <style>
+
+/* Remove top empty space in sidebar */
+section[data-testid="stSidebar"] > div:first-child {
+    padding-top: 0rem !important;
+}
+section[data-testid="stSidebar"] > div > div:first-child {
+    padding-top: 0rem !important;
+    margin-top: 0rem !important;
+}
 
 /* Sidebar header compact */
 
@@ -1311,11 +1320,11 @@ app_details = [
 
     ('com.westernunion.android.mtapp', 'us', 'Android'),
 
-    ('com.westernunion.moneytransferr3app.eu','fr','Android'), 
+    ('com.westernunion.moneytransferr3app.eu','fr','Android'),
 
     ('com.westernunion.moneytransferr3app.au', 'au', 'Android'),
 
-    ('com.westernunion.moneytransferr3app.ca', 'ca', 'Android'), 
+    ('com.westernunion.moneytransferr3app.ca', 'ca', 'Android'),
 
     ('com.westernunion.moneytransferr3app.nz', 'nz', 'Android'),
 
@@ -1339,7 +1348,7 @@ app_details = [
 
     ('com.westernunion.moneytransferr3app.hk','hk','Android'),
 
-    ('com.westernunion.moneytransferr3app.bh', 'bh', 'Android'),   
+    ('com.westernunion.moneytransferr3app.bh', 'bh', 'Android'),  
 
     ('com.westernunion.moneytransferr3app.kw', 'kw', 'Android'),
 
@@ -1353,15 +1362,15 @@ app_details = [
 
     ('com.westernunion.moneytransferr3app.jp', 'jp', 'Android'),
 
-    ('com.westernunion.moneytransferr3app.es', 'es', 'Android'),     
+    ('com.westernunion.moneytransferr3app.es', 'es', 'Android'),    
 
     ('com.westernunion.moneytransferr3app.acs1', 'pe', 'Android'),
 
     ('com.westernunion.moneytransferr3app.ph', 'ph', 'Android'),
 
-    ('com.westernunion.moneytransferr3app.ph', 'ae', 'Android'), 
+    ('com.westernunion.moneytransferr3app.ph', 'ae', 'Android'),
 
-    ('com.westernunion.moneytransferr3app.jo', 'jo', 'Android'),             
+    ('com.westernunion.moneytransferr3app.jo', 'jo', 'Android'),            
 
 ]
 
@@ -1469,10 +1478,8 @@ def get_all_reviews(app_details, app_country_list):
 
 # --- Twitter Bearer Token (hardcoded) ---
 # Replace the value below with your actual Twitter API v2 Bearer Token.
-# It's URL-encoded here; decode it to get the raw token value.
 # Get one at: developer.twitter.com → Projects → Keys & Tokens
-import urllib.parse
-_twitter_bearer = urllib.parse.unquote("AAAAAAAAAAAAAAAAAAAAAPdy8gEAAAAAUEixXc%2BnIEAQa5mIQVVCly%2Fxv5E%3Df5WeZ6s7AkB3aPZfAxgaLoHsYjmiPsN6wrk8SPYQy4HPAxqFt8")
+_twitter_bearer = "YOUR_TWITTER_BEARER_TOKEN_HERE"
 
 with st.spinner("Fetching Android & iOS reviews..."):
 
@@ -2011,7 +2018,7 @@ def get_sentiment_label(row):
 
         else:
 
-            return 'Neutral' 
+            return 'Neutral'
 
     else:
 
@@ -2429,7 +2436,7 @@ def generate_figures(grouped):
 
                     borderwidth=3,
 
-                    opacity=0.98 
+                    opacity=0.98
 
                 )
 
@@ -2483,7 +2490,7 @@ def generate_figures(grouped):
 
                 bgcolor='white',
 
-                resolution=50,               
+                resolution=50,              
 
                 showsubunits=True,
 
@@ -2497,7 +2504,7 @@ def generate_figures(grouped):
 
                 center=dict(lat=20, lon=0),
 
-                projection_scale=1  # Zoom level 
+                projection_scale=1  # Zoom level
 
             )
 
@@ -2817,140 +2824,135 @@ def show_word_cloud(filtered_df):
 
  
 
-    import re
-    from collections import Counter
-    import plotly.graph_objects as go
+    #st.markdown("<div style='text-align:center; font-size:1.2em; color:#007BFF;'><b>Please wait, data is loading..</b></div>", unsafe_allow_html=True)
 
-    try:
-        # Comprehensive stop words: NLTK English + app-specific + common filler words
-        from nltk.corpus import stopwords as nltk_stopwords
+    with st.spinner("☁️ Generating Word Cloud, Please wait..."):
+
+        # Use Western Union colors: yellow and black
+
+        western_union_colors = ["#ffdd00", "#000000"]
+
+ 
+
+        # Optional mask image
+
         try:
-            _nltk_sw = set(nltk_stopwords.words('english'))
-        except Exception:
-            _nltk_sw = set()
 
-        custom_stopwords = _nltk_sw | {
-            # App / review meta words
-            "app", "application", "apps", "review", "reviews", "store",
-            "play", "update", "updated", "version", "versions", "device",
-            "devices", "phone", "phones", "western", "union", "wu",
-            "western union", "western_union",
-            # Generic filler / opinion words that add no insight
-            "good", "great", "bad", "okay", "ok", "nice", "use", "used",
-            "using", "uses", "works", "work", "worked", "working", "need",
-            "needs", "needed", "make", "makes", "made", "making", "got",
-            "get", "gets", "getting", "just", "really", "actually",
-            "always", "never", "every", "still", "also", "even", "much",
-            "many", "more", "most", "best", "well", "like", "something",
-            "nothing", "everything", "thing", "things", "way", "ways",
-            "time", "times", "one", "two", "three", "first", "last",
-            "new", "old", "able", "unable", "keep", "kept", "tried",
-            "try", "trying", "let", "please", "thank", "thanks",
-            "service", "customer", "support", "help", "helpful", "issue",
-            "issues", "problem", "problems", "fix", "fixed", "fixes",
-            "easy", "hard", "fast", "slow", "slows", "said", "say",
-            "says", "come", "came", "come", "going", "went", "gone",
-            "know", "known", "take", "took", "taken", "give", "given",
-            "show", "showed", "shown", "see", "seen", "want", "wanted",
-            "back", "now", "here", "there", "when", "where", "would",
-            "could", "should", "might", "must", "shall", "will", "may",
-            "been", "being", "was", "were", "had", "have", "has",
-            "did", "does", "done", "put", "set", "run", "ran",
-        }
+            mask = np.array(Image.open("Images/wuupdated.png"))
 
-        # Detect review column safely
-        review_col = next((c for c in filtered_df.columns if c.lower() == 'review'), None)
-        if review_col is None:
-            st.warning("⚠️ No review column found in data.")
-            return
+        except Exception as e:
 
-        # Work on safe copy — only the column we need
-        wc_df = filtered_df[[review_col]].copy()
-        wc_df['_wc_score'] = wc_df[review_col].apply(
-            lambda x: sia.polarity_scores(str(x))['compound']
-        )
-        wc_df['_wc_label'] = wc_df['_wc_score'].apply(
+            mask = None
+
+            print(f"Mask image not found or failed to load: {e}")
+
+        custom_stopwords = {"considering", "app", "application", "review", "store", "play", "update", "version", "device", "phone"}
+
+        stopwords_set = set(STOPWORDS).union(custom_stopwords)
+
+        import re
+
+        # Assign text before using it
+
+        text = " ".join(filtered_df['review'].astype(str))
+
+        words = re.findall(r'\b\w+\b', text.lower())
+
+        filtered_words = [w for w in words if w not in stopwords_set and len(w) > 2]
+
+        filtered_text = " ".join(filtered_words)
+
+        # Sentiment scoring
+
+        filtered_df['sentiment_score'] = filtered_df['review'].apply(lambda x: sia.polarity_scores(str(x))['compound'])
+
+        filtered_df['sentiment_label'] = filtered_df['sentiment_score'].apply(
+
             lambda x: 'Positive' if x > 0.2 else ('Negative' if x < -0.2 else 'Neutral')
+
         )
 
-        sentiment_labels = sorted(wc_df['_wc_label'].dropna().unique().tolist())
-        if not sentiment_labels:
-            st.warning("⚠️ Could not detect sentiment labels.")
-            return
+ 
 
-        # Colour map per sentiment
-        sentiment_colors = {
-            'Positive': '#27ae60',
-            'Negative': '#e74c3c',
-            'Neutral':  '#f39c12',
-        }
+        st.markdown("<h4 style='text-align: center; font-weight: bold;'>Select Sentiment for Word Cloud</h4>", unsafe_allow_html=True)
 
-        # Sentiment selector — MUST be outside spinner
-        st.markdown("<h4 style='text-align:center; font-weight:bold;'>Select Sentiment for Word Cloud</h4>",
-                    unsafe_allow_html=True)
-        sentiment_option = st.selectbox(
-            "Sentiment for Word Cloud",
-            sentiment_labels,
-            label_visibility="collapsed"
-        )
+        sentiment_option = st.selectbox("", filtered_df['sentiment_label'].unique())
+
         st.markdown("<br>", unsafe_allow_html=True)
 
-        # Build word frequencies for selected sentiment
-        reviews_text = " ".join(
-            wc_df[wc_df['_wc_label'] == sentiment_option][review_col]
-            .fillna("").astype(str).tolist()
-        )
-        # Extract only alphabetic words of 3+ chars, lowercased
-        words = re.findall(r'\b[a-zA-Z]{3,}\b', reviews_text.lower())
-        # Remove all stop words (NLTK + custom)
-        filtered_words = [w for w in words if w not in custom_stopwords]
-        word_counts = Counter(filtered_words)
-        # Also drop the top 5 most dominant words that survived (corpus-specific noise)
-        dominant = {w for w, _ in word_counts.most_common(5)}
-        word_counts = Counter({w: c for w, c in word_counts.items() if w not in dominant})
-        top_words = word_counts.most_common(40)
+ 
 
-        if not top_words:
-            st.warning("⚠️ Not enough words for the selected sentiment.")
+        text = " ".join(filtered_df[filtered_df['sentiment_label'] == sentiment_option]['review'].astype(str))
+
+        custom_stopwords = {"considering", "app", "application", "review", "store", "play", "update", "version", "device", "phone"}
+
+        stopwords_set = set(STOPWORDS).union(custom_stopwords)
+
+        # Remove most common words
+
+        import re
+
+        from collections import Counter
+
+        words = re.findall(r'\b\w+\b', text.lower())
+
+        filtered_words = [w for w in words if w not in stopwords_set]
+
+        word_counts = Counter(filtered_words)
+
+        most_common_words = set([w for w, _ in word_counts.most_common(10)])
+
+        final_words = [w for w in filtered_words if w not in most_common_words]
+
+        filtered_text = " ".join(final_words)
+
+ 
+
+        def western_union_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
+
+            return np.random.choice(western_union_colors)
+
+ 
+
+        if not filtered_text.strip():
+            st.warning("⚠️ Not enough words to generate a Word Cloud for the selected sentiment and filters.")
             return
 
-        with st.spinner("☁️ Generating Word Frequency Chart, Please wait..."):
-            labels = [w for w, _ in top_words]
-            sizes  = [c for _, c in top_words]
-            bar_color = sentiment_colors.get(sentiment_option, '#FFD700')
+        try:
+            wordcloud = WordCloud(
 
-            fig = go.Figure(go.Bar(
-                x=sizes[::-1],
-                y=labels[::-1],
-                orientation='h',
-                marker=dict(
-                    color=sizes[::-1],
-                    colorscale=[[0, '#ffe066'], [1, bar_color]],
-                    line=dict(color='#333333', width=0.5),
-                ),
-                text=[str(s) for s in sizes[::-1]],
-                textposition='outside',
-                hovertemplate='<b>%{y}</b><br>Count: %{x}<extra></extra>',
-            ))
+                stopwords=stopwords_set.union(most_common_words),
 
-            fig.update_layout(
-                title=dict(
-                    text=f'Top Words — {sentiment_option} Reviews',
-                    x=0.5, xanchor='center',
-                    font=dict(size=18, color='#333')
-                ),
-                xaxis=dict(title='Frequency', showgrid=True, gridcolor='#eeeeee'),
-                yaxis=dict(title='', tickfont=dict(size=12)),
-                plot_bgcolor='white',
-                paper_bgcolor='white',
-                height=700,
-                margin=dict(l=20, r=60, t=60, b=40),
-            )
+                max_words=15,
 
-            st.plotly_chart(fig, use_container_width=True)
+                width=600,
 
-    except Exception as e:
-        st.error(f"⚠️ Word Frequency Chart error: {e}")
+                height=450,
+
+                background_color='white',
+
+                color_func=western_union_color_func,
+
+                mask=mask,
+
+                contour_color='black',
+
+                contour_width=2,
+
+                collocations=False
+
+            ).generate(filtered_text)
+
+            fig, ax = plt.subplots(figsize=(10, 5))
+
+            ax.imshow(wordcloud, interpolation='bilinear')
+
+            ax.axis('off')
+
+            st.pyplot(fig)
+
+        except ValueError as e:
+            st.warning(f"⚠️ Could not generate Word Cloud: {e}")
 
  
 
@@ -4187,7 +4189,7 @@ def show_complaint_analytics(filtered_df, date1, date2):
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-  
+ 
 
     # Process complaints from existing filtered_df
 
@@ -4401,9 +4403,9 @@ def show_complaint_analytics(filtered_df, date1, date2):
 
         st.plotly_chart(fig_heatmap, use_container_width=True)        
 
-    
+   
 
-    
+   
 
     st.markdown("### 📋 Top Issues Ranked")
 
@@ -4635,7 +4637,7 @@ def show_complaint_analytics(filtered_df, date1, date2):
 
    
 
-    
+   
 
  
 
@@ -6442,7 +6444,7 @@ with main_container:
 
                         try:
 
-                            mask = np.array(Image.open("wuupdated.png"))
+                            mask = np.array(Image.open("Images/wuupdated.png"))
 
                         except Exception:
 
@@ -6824,7 +6826,7 @@ st.markdown(f"""
 
  
 
-  
+ 
 """, unsafe_allow_html=True)
 
  
@@ -6838,5 +6840,3 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
- 
