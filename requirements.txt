@@ -3,7 +3,6 @@ streamlit>=1.28.0
 matplotlib>=3.7.0
 pytextrank==3.3.0
 google-play-scraper==1.2.7
-app_store_scraper
 googletrans==3.1.0a0
 nltk
 seaborn
