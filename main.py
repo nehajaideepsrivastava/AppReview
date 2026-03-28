@@ -418,6 +418,7 @@ possible_paths = [
     os.path.join(dir, 'image', 'wufull.png'),
     os.path.join(dir, 'image', 'apotheke.png'),
     os.path.join(dir, 'Images', 'apotheke.png'),
+    os.path.join(dir,  'wufull.png'),
 ]
 encoded_image = None
 for filename in possible_paths:
