@@ -378,7 +378,7 @@ st.set_page_config(
 
     page_title="Customer Sentiment Analyzer!!!",
 
-    page_icon="Images/WUNEW.png",  # File must be in the root directory
+    page_icon="WUNEW.png",  # File must be in the root directory
 
     layout="wide"
 
@@ -6442,7 +6442,7 @@ with main_container:
 
                         try:
 
-                            mask = np.array(Image.open("Images/wuupdated.png"))
+                            mask = np.array(Image.open("wuupdated.png"))
 
                         except Exception:
 
